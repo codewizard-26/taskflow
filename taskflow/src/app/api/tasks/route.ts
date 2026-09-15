@@ -1,18 +1,8 @@
-
+import db from '../../db/index'
 
 export async function GET() {
-  return Response.json([
-    {
-      id: 1,
-      title: "Learn Next.js",
-      completed: false,
-    },
-    {
-      id: 2,
-      title: "Build TaskFlow",
-      completed: false,
-    },
-  ]);
+  const data = await db.select().from(tasks);
+  return Response.json(data)
 }
 export async function POST(request:Request) {
 const data = await request.json()
